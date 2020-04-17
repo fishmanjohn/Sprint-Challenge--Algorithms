@@ -96,6 +96,41 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
+        self.swap_item()
+        while self.light_is_on():
+            self.set_light_off()
+            while self.can_move_right():
+                # print(f" POSITION>>>{self._position}")
+                self.move_right()
+                if self.compare_item() == 1:
+                    self.set_light_on()
+                if self.compare_item == -1:
+                    self.swap_item()
+                    print(f"ITEM>>>{self._item}")
+                    # self.move_right()
+                    self.set_light_on
+
+            while self.can_move_left():
+                print(f" POSITION>>>{self._position}")
+                if self.compare_item() == 1:
+                    self.swap_item()
+                    print(f"ITEM>>>{self._item}")
+                    self.move_left()
+                    self.set_light_on()
+                elif self.compare_item() == -1:
+                    self.move_left() 
+                    self.set_light_on()
+
+         """
+         pick up first index
+         check if you can move right 
+            if you can, move right and compare
+            if the number to right is greater than you item swap, else move on
+        if you can no longer move right move left
+            move left.
+            if number to left is smaller swap your number for that one else move on to next number
+            
+         """
         
 
 
