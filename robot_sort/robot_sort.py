@@ -96,41 +96,59 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        self.swap_item()
-        while self.light_is_on():
-            self.set_light_off()
-            while self.can_move_right():
-                # print(f" POSITION>>>{self._position}")
+        self.set_light_on()
+       
+        #setting light on to inittalize loop
+        while self.light_is_on() == True:
+            #picking up the first item 
+            self.swap_item()
+
+            while self.can_move_right() == True:
+                # moving right to itterate over list forward
                 self.move_right()
-                if self.compare_item() == 1:
-                    self.set_light_on()
-                if self.compare_item == -1:
+                print(f'position R>>>{self._position}')
+                # if the list item is lager than the one I have swap for larger item
+                if self.compare_item() == -1:
                     self.swap_item()
-                    print(f"ITEM>>>{self._item}")
-                    # self.move_right()
-                    self.set_light_on
+                # once at the end of the array I stop moving right and check if the number at the right ide of the array is smaller than the one I have I swap and move left.
+                elif self.can_move_right == False and self.compare_item() == -1:
+                    self.swap_item()
+                    self.move_left()
 
             while self.can_move_left():
-                print(f" POSITION>>>{self._position}")
+                # moving left to itterate over list in reverse 
+                self.move_left()
+                print(f'list>>>{self._list}')
+                print(f'position L>>>{self._position}')
+                # if the item is smaller that the one I am holding swap
                 if self.compare_item() == 1:
                     self.swap_item()
-                    print(f"ITEM>>>{self._item}")
-                    self.move_left()
-                    self.set_light_on()
-                elif self.compare_item() == -1:
-                    self.move_left() 
-                    self.set_light_on()
+                # if we returned back to the begining where we dropped our none we put othe small number that we are carrying there
+                #and move the none to the to the right
+                elif self.compare_item() == None and self.can_move_right == True:
+                    self.swap_item()
+                    self.move_right()
 
-         """
-         pick up first index
-         check if you can move right 
-            if you can, move right and compare
-            if the number to right is greater than you item swap, else move on
-        if you can no longer move right move left
-            move left.
-            if number to left is smaller swap your number for that one else move on to next number
-            
-         """
+            # cant pick up none
+            if self.compare_item == 1 and self.move_right == False:
+                self.set_light_off
+                break
+
+
+                    
+                    
+
+"""
+pick up first index
+use light as base case when 
+check if you can move right 
+if you can, move right and compare
+if the number to right is greater than you item swap, else move on
+if you can no longer move right move left
+move left.
+if number to left is smaller swap your number for that one else move on to next number
+
+"""
         
 
 
